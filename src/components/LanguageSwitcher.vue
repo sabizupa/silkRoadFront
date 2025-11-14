@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed, onBeforeUnmount, onMounted} from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const open = ref(false);
@@ -20,8 +20,17 @@ function changeLocale(lang) {
   open.value = false;
 }
 
-document.addEventListener('click', () => {
-  open.value = false;
+let handleClickOutside;
+
+onMounted(() => {
+  handleClickOutside = () => {
+    open.value = false;
+  };
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
 });
 </script>
 

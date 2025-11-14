@@ -7,7 +7,7 @@ import LayoutHeader from "@/components/LayoutHeader.vue";
 <div class="app-root">
   <LayoutHeader />
   <main class = "main-layout">
-
+    <RouterView />
   </main>
 </div>
 </template>
